@@ -8,7 +8,7 @@ echo '<nav class="navbar navbar-expand-lg navbar-light border-bottom border-top"
               <a class="nav-link dropdown-toggle" role="button" href="#" id="dropdownMenuLink"
               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Compra y Venta</a>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <a class="dropdown-item" href="#">Compra</a>
+              <a class="dropdown-item" href="cv_compra.php">Compra</a>
               <a class="dropdown-item" href="cv_venta.php">Venta</a>
             </div>
         </li>

@@ -45,10 +45,17 @@
       var id_ing = $("#id-cliente").val();
       $.post("PHP/get/get_cliente.php",
         {
-          
+          id: id_ing
         },
         function(output){
-
+          var result = $.parseJSON(output);
+          if(result[0] == 1){
+            $("#collapse-id").collapse("show");
+            $("#nombre-tarjeta").html(result[2]);
+            $("#rut-tarjeta").html(result[3]);
+          }else{
+            $("#collapse-id").collapse("hide");
+          }
         }
       )
     }
@@ -84,7 +91,7 @@
                 <a class="nav-link dropdown-toggle" role="button" href="#" id="dropdownMenuLink"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Compra y Venta</a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="#">Compra</a>
+                <a class="dropdown-item" href="cv_compra.php">Compra</a>
                 <a class="dropdown-item" href="cv_venta.php">Venta</a>
               </div>
           </li>
@@ -153,19 +160,36 @@
         <form>
           <div class="form-group">
             <label for="id-cliente">ID cliente</label>
-            <input type="text" class="form-control" id="id-cliente" placeholder="Ingrese el numero identificador">
+            <input type="text" class="form-control" id="id-cliente" placeholder="Ingrese el numero identificador" onchange="get_cliente();">
           </div>
         </form>
       </div>
       <div class = "col">
         <div class = "collapse" id = "collapse-id">
-        <div class="card" style="width:100%;">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
+          <div class="card" style="margin:0 auto; max-height: 125px;width:70%;background-color:#EEEEEE">
+            <div class="card-body">
+              <h3 id="nombre-tarjeta"></h3>
+              <h7 id="rut-tarjeta"></h7>
+            </div>
           </div>
         </div>
-        </div>
       </div>
+    </div>
+    <div class="row">
+    <div class = "col">
+      <form>
+        <div class="form-group">
+          <div class="dropdown">
+            <label for="nombre-producto">Producto</label>
+            <select class="custom-select" id="nombre-producto">
+              <option selected>Open this select menu</option>
+
+            </select>
+          </div>
+
+        </div>
+      </form>
+    </div>
     </div>
   </div>
 
