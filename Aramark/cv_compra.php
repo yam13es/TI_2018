@@ -9,6 +9,7 @@
 
   <script>
   function send(){
+    $("#collapse_top").collapse("hide");
     var prov = $("#nombre-proveedor").val();
     var prod = $("#nombre-producto").val();
     var cant = $("#cant-producto").val();
@@ -32,6 +33,11 @@
         $("#alert_top").attr({"class":"alert alert-success"});
       }
       $("#top_alert_text").html(result[1]);
+      $("#nombre-proveedor").val("");
+      $("#nombre-producto").val("");
+      $("#cant-producto").val("");
+      $("#fecha_elab").val("");
+      $("#fecha_venc").val("");
     });
   }
   </script>

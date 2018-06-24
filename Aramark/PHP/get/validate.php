@@ -13,4 +13,7 @@
     return !(strpos($mail, "@") === false || strpos($mail, "@") == 0 || strpos($mail, "@") == strlen($mail)-1 ||
     strpos($mail, ".") === false || strpos($mail, ".") == 0 || strpos($mail, ".") == strlen($mail)-1 );
   }
+  function val_date($date){
+    return strpos($date, "/") !== false && strpos(substr($date, strpos($date, "/")+1), "/") !== false;
+  }
  ?>
