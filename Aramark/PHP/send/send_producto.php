@@ -34,7 +34,7 @@ else{
     echo json_encode(array(0, "El ID ".$id_producto." ya se encuentra registrado."));
   }else{
     //Do the actual query
-    if(!($stmt = $conn->prepare("INSERT INTO producto(id_producto, nombre, precio) VALUES (?,?,?)"))){
+    if(!($stmt = $conn->prepare("INSERT INTO producto(id_producto, nombre_producto, precio) VALUES (?,?,?)"))){
       echo json_encode(array(0, "Error: " . $sql . "<br>" . $conn->error));
     }
     if(!$stmt->bind_param("isi",$id_producto, $nombre, $precio)){

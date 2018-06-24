@@ -18,7 +18,7 @@ if($proveedor == "Selecciona un elemento..."){
 }else{
   $conn = new mysqli($servername, $username, $password, $dbname);
 
-  $stmt = $conn->prepare("SELECT id_producto FROM producto WHERE nombre = ?");
+  $stmt = $conn->prepare("SELECT id_producto FROM producto WHERE nombre_producto = ?");
   $stmt->bind_param("s", $producto);
   $stmt->execute();
 
@@ -26,7 +26,7 @@ if($proveedor == "Selecciona un elemento..."){
   $row = $result->fetch_assoc();
   $id_producto = $row["id_producto"];
 
-  $stmt = $conn->prepare("SELECT id_proveedor FROM proveedor WHERE nombre = ?");
+  $stmt = $conn->prepare("SELECT id_proveedor FROM proveedor WHERE nombre_proveedor = ?");
   $stmt->bind_param("s", $proveedor);
   $stmt->execute();
   $result = $stmt->get_result();

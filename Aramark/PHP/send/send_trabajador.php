@@ -16,7 +16,7 @@ if(!val_rut($rut)){
     die("Connection failed: " . $conn->connect_error);
   }
   //Check if it doesn't exist
-  if(!($stmt = $conn->prepare("SELECT * FROM trabajador WHERE rut = ?"))){
+  if(!($stmt = $conn->prepare("SELECT * FROM trabajador WHERE rut_trabajador = ?"))){
     echo json_encode(array(0, "Error: " . $sql . "<br>" . $conn->error));
   }
   if(!$stmt->bind_param("s", $rut)){
@@ -30,7 +30,7 @@ if(!val_rut($rut)){
     echo json_encode(array(0, "El rut ".$rut." ya se encuentra registrado."));
   }else{
     //Do the actual query
-    if(!($stmt = $conn->prepare("INSERT INTO trabajador(rut, nombre, clave) VALUES (?,?, ?)"))){
+    if(!($stmt = $conn->prepare("INSERT INTO trabajador(rut_trabajador, nombre_trabajador, clave) VALUES (?,?, ?)"))){
       echo json_encode(array(0, "Error: " . $sql . "<br>" . $conn->error));
     }
     if(!$stmt->bind_param("sss", $rut, $nombre, $rut)){

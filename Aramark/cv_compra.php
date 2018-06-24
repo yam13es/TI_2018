@@ -8,8 +8,12 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 
   <script>
+  $(document).ready(function(){
+    $("#nav_inf").attr({"class":"nav-item dropdown"});
+    $("#nav_cv").attr({"class":"nav-item dropdown active"});
+    $("#nav_reg").attr({"class":"nav-item dropdown"});
+  });
   function send(){
-    $("#collapse_top").collapse("hide");
     var prov = $("#nombre-proveedor").val();
     var prod = $("#nombre-producto").val();
     var cant = $("#cant-producto").val();
@@ -63,41 +67,9 @@
 	<div class ="media">
 		<a href="index.html" style="margin: 0 auto;"><img class="img-responsive"  src="https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/122013/aramark.png?itok=gWhdqGKd"></a>
 	</div>
-  <nav class="navbar navbar-expand-lg navbar-light border-bottom border-top">
-        <ul class="navbar-nav mx-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="index.html">Home</a>
-          </li>
-          <li class="nav-item dropdown active">
-                <a class="nav-link dropdown-toggle" role="button" href="#" id="dropdownMenuLink"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Compra y Venta</a>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="cv_compra.php">Compra</a>
-                <a class="dropdown-item" href="cv_venta.php">Venta</a>
-              </div>
-          </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" role="button" href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Informe</a>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="#">Consultas</a>
-                <a class="dropdown-item" href="#">Compra</a>
-                <a class="dropdown-item" href="#">Venta</a>
-              </div>
-          </li>
-          <li class="nav-item dropdown ">
-                <a class="nav-link dropdown-toggle" role="button" href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Registro</a>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="reg_cliente.php">Cliente</a>
-                <a class="dropdown-item" href="reg_producto.php">Producto</a>
-                <a class="dropdown-item" href="reg_proveedor.php">Proveedor</a>
-                <a class="dropdown-item" href="reg_trabajador.php">Trabajador</a>
-              </div>
-          </li>
-        </ul>
-  </nav>
-
-
-
+  <?php
+    include "nav_bar.php";
+   ?>
   <form style="width: 70%; margin: 10px auto;">
     <div class = "collapse" id="collapse_top">
       <div class="alert alert-primary" role="alert" id="alert_top">
@@ -112,15 +84,6 @@
         <?php
             include "PHP/get/load_proveedores.php";
          ?>
-    <!--  </select>
-      <small class="form-text text-muted">¿No lo encuentras? <a href="reg_proveedor.php">Agregar</a> </small>
-    </div>
-    <div class="form-row">
-      <div class="col-10">
-        <div class="form-group">
-          <label for="nombre-producto">Producto</label>
-          <select class="custom-select" id="nombre-producto">
-            <option selected>Selecciona un elemento...</option>-->
           </select>
           <small class="form-text text-muted">¿No lo encuentras? <a href="reg_producto.php">Agregar</a> </small>
         </div>

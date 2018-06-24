@@ -4,7 +4,7 @@ echo '<nav class="navbar navbar-expand-lg navbar-light border-bottom border-top"
           <li class="nav-item">
             <a class="nav-link" href="index.html">Home</a>
         </li>
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown" id="nav_cv">
               <a class="nav-link dropdown-toggle" role="button" href="#" id="dropdownMenuLink"
               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Compra y Venta</a>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -12,15 +12,16 @@ echo '<nav class="navbar navbar-expand-lg navbar-light border-bottom border-top"
               <a class="dropdown-item" href="cv_venta.php">Venta</a>
             </div>
         </li>
-          <li class="nav-item dropdown">
+          <li class="nav-item dropdown" id="nav_inf">
               <a class="nav-link dropdown-toggle" role="button" href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Informe</a>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
               <a class="dropdown-item" href="#">Consultas</a>
-              <a class="dropdown-item" href="#">Compra</a>
+              <a class="dropdown-item" href="inf_compras.php">Compra</a>
               <a class="dropdown-item" href="#">Venta</a>
+              <a class="dropdown-item" href="inf_inventario.php">Inventarios</a>
             </div>
         </li>
-        <li class="nav-item dropdown active">
+        <li class="nav-item dropdown active" id="nav_reg">
               <a class="nav-link dropdown-toggle" role="button" href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Registro</a>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
               <a class="dropdown-item" href="reg_cliente.php">Cliente</a>

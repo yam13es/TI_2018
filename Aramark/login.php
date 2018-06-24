@@ -17,7 +17,7 @@ session_start();
       die("Connection failed: " . $conn->connect_error);
     }
     //Check if it does exist
-    if(!($stmt = $conn->prepare("SELECT * FROM trabajador WHERE rut = ?"))){
+    if(!($stmt = $conn->prepare("SELECT * FROM trabajador WHERE rut_trabajador = ?"))){
       echo json_encode(array(0, "Error: " . $sql . "<br>" . $conn->error));
     }
     if(!$stmt->bind_param("s", $rut)){
@@ -30,7 +30,7 @@ session_start();
     if($result->num_rows == 0){
       echo json_encode(array(0, "El rut ".$rut." no se encuentra registrado."));
     }else{
-      if(!($stmt = $conn->prepare("SELECT * FROM trabajador WHERE rut = ?"))){
+      if(!($stmt = $conn->prepare("SELECT * FROM trabajador WHERE rut_trabajador = ?"))){
         echo json_encode(array(0, "Error: " . $sql . "<br>" . $conn->error));
       }
       if(!$stmt->bind_param("s", $rut)){
@@ -45,7 +45,7 @@ session_start();
         $srv_pass = $row["clave"];
         if($clave == $srv_pass){
           //Exito
-          $_SESSION["username"] = $row["nombre"];
+          $_SESSION["username"] = $row["nombre_trabajador"];
           $_SESSION["rut"] = $rut;
           echo json_encode(array(1, "Has iniciado sesion."));
         }else{

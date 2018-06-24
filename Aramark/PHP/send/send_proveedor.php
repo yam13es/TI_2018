@@ -34,7 +34,7 @@ else{
     die("Connection failed: " . $conn->connect_error);
   }
   //Check if it doesn't exist
-  if(!($stmt = $conn->prepare("SELECT * FROM proveedor WHERE nombre = ?"))){
+  if(!($stmt = $conn->prepare("SELECT * FROM proveedor WHERE nombre_proveedor = ?"))){
     echo json_encode(array(0, "Error: " . $sql . "<br>" . $conn->error));
   }
   if(!$stmt->bind_param("s", $nombre)){
@@ -48,7 +48,7 @@ else{
     echo json_encode(array(0, "El nombre ".$nombre." ya se encuentra registrado."));
   }else{
     //Do the actual query
-    if(!($stmt = $conn->prepare("INSERT INTO proveedor(nombre, correo, telefono, direccion) VALUES (?,?,?,?)"))){
+    if(!($stmt = $conn->prepare("INSERT INTO proveedor(nombre_proveedor, correo, telefono, direccion) VALUES (?,?,?,?)"))){
       echo json_encode(array(0, "Error: " . $sql . "<br>" . $conn->error));
     }
     if(!$stmt->bind_param("ssss", $nombre, $correo, $fono, $direccion)){
