@@ -104,24 +104,29 @@
           maxs:max
         },
         function(output){
-          var result = $.parseJSON(output);
-          if(result[0] != 2){
-            $("#collapse_result").collapse("show");
-          }
-          if(result[0] == 0){
-            $("#alert_top").attr({"class":"alert alert-danger"});
-          }else if(result[0] == 1){
-            var i;
-            $("#alert_top").attr({"class":"alert alert-success"});
-            $("#id-cliente").val("");
-            for (i=0; i<4;i++){
-              $("#lote-producto-"+i).val("Elige un lote...");
-              $("#nombre-producto-"+i).val("Elige un producto...");
-              $("#cant-producto-"+i).val("");
-              $("#check-"+i).attr("checked", false);
+          try{
+            var result = $.parseJSON(output);
+            if(result[0] != 2){
+              $("#collapse_result").collapse("show");
             }
+            if(result[0] == 0){
+              $("#alert_top").attr({"class":"alert alert-danger"});
+            }else if(result[0] == 1){
+              var i;
+              $("#alert_top").attr({"class":"alert alert-success"});
+              $("#id-cliente").val("");
+              for (i=0; i<4;i++){
+                $("#lote-producto-"+i).val("Elige un lote...");
+                $("#nombre-producto-"+i).val("Elige un producto...");
+                $("#cant-producto-"+i).val("");
+                $("#check-"+i).attr("checked", false);
+              }
+            }
+            $("#top_alert_result").html(result[1]);
           }
-          $("#top_alert_result").html(result[1]);
+          catch(err){
+            $("#probar").html(output);
+          }
         }
       )
     }

@@ -1,6 +1,3 @@
-<?php
-session_start();
- ?>
 <html style="height:100%;">
 <head>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
@@ -16,12 +13,6 @@ session_start();
     $("#nav_cv").attr({"class":"nav-item dropdown"});
     $("#nav_reg").attr({"class":"nav-item dropdown"});
   });
-  function inv_esp(nombre){
-    $.post("set_producto.php", {name:nombre}, function(data){
-      window.location.href="inf_inv_especifico.php"
-
-    });
-  }
   </script>
 
 </head>
@@ -51,57 +42,53 @@ session_start();
   <div><br></div>
 
   <div class = "container">
-    <h3 id="prueba">Inventarios totales</h3>
+    <h3>Historial de Ventas</h3>
     <?php
     include "db_info.php";
     $conn = new mysqli($servername, $username, $password, $dbname);
 
-    $stmt = $conn->prepare("SELECT producto.id_producto,nombre_producto, SUM(stock) FROM lote, producto WHERE lote.id_producto = producto.id_producto GROUP BY id_producto;");
-    if (!$stmt->execute()) {
-      echo json_encode(array(0,"Execute failed: (" . $stmt->errno . ") " . $stmt->error));
-    }
+    $stmt = $conn->prepare("SELECT * FROM venta_lote, venta, lote, producto, cliente, trabajador WHERE venta.id_venta = venta_lote.id_venta
+       AND venta_lote.id_lote = lote.id_lote AND venta.rut_trabajador = trabajador.rut_trabajador AND lote.id_producto = producto.id_producto
+        AND cliente.id_cliente = venta.id_cliente ORDER BY fecha DESC");
+    $stmt->execute();
 
     $result = $stmt->get_result();
     if($result->num_rows == 0){
-      echo "<p class=text-muted style='margin:0 auto;'>No exiten articulos en el inventario.</p>";
+      echo "<p class=text-muted style='margin:0 auto;'>No exiten ventas registradas.</p>";
     }else{
       echo '
       <table class="table">
         <thead>
           <tr>
-            <th scope="col" >Producto</th>
-            <th scope="col" style="text-align: center;">Stock</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Cliente</th>
+            <th scope="col">Producto</th>
+            <th scope="col">Cantidad</th>
           </tr>
         </thead>
         <tbody>';
 
-        $i = 0;
         while($row = $result->fetch_assoc()){
-          $producto = $row["nombre_producto"];
-          $cantidad = $row["SUM(stock)"];
+          $fecha = $row["fecha"];
+          $cliente = $row["nombre"];
+          $Producto = $row["nombre_producto"];
+          $cantidad = $row["cantidad"];
 
           echo '
           <tr>
-            <td><a style="margin-right:15px" href="#" onclick="inv_esp(';
-            echo "'$producto'";
-            echo ');">'.$producto.'</a>';
-            if($cantidad <5 && $cantidad >0){
-              echo '<span class="badge badge-warning">Pocas unidades</span>';
-            }else if($cantidad == 0){
-              echo '<span class="badge badge-danger">Sin stock</span>';
-            }
-
-            echo '</td>
-            <td style="text-align: center;">'.$cantidad.'</td>
+            <td>'.$fecha.'</td>
+            <td>'.$cliente.'</td>
+            <td>'.$Producto.'</td>
+            <td>'.$cantidad.'</td>
           </tr>
           ';
-          $i++;
         }
         echo '
         </tbody>
       </table>
       ';
     }
+      ;
      ?>
   </div>
 

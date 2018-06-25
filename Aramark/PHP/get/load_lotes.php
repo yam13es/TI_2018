@@ -22,9 +22,11 @@
   $result = $stmt->get_result();
   if($result->num_rows != 0){
     while($row = $result->fetch_assoc()){
-      array_push($nombres, $row["fecha_elab"]."/".$row["fecha_venc"]);
-      array_push($stock, $row["stock"]);
-      array_push($ids, $row["id_lote"]);
+      if($row['stock'] > 0){
+        array_push($nombres, $row["fecha_elab"]."/".$row["fecha_venc"]);
+        array_push($stock, $row["stock"]);
+        array_push($ids, $row["id_lote"]);
+      }
     }
   }
   $stmt->close();

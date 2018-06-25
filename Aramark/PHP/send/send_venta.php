@@ -16,14 +16,19 @@
       $suma_check += 1;
       if($names[$i] == "Elige un producto..."){
         echo json_encode(array(0, "Debes elegir un producto"));
+        die();
       }else if($lotes[$i] == "Elige un lote..."||$lotes[$i] == 0){
         echo json_encode(array(0, "Debes elegir un lote disponible"));
+        die();
       }else if($cantidades[$i] > $maxs[$i]){
         echo json_encode(array(0, "La cantidad excede el maximo"));
+        die();
       }else if($cantidades[$i] <1){
         echo json_encode(array(0, "La cantidad debe ser positiva"));
+        die();
       }else if(strlen($id_cliente) <1){
         echo json_encode(array(0, "Ingresa un Cliente valido"));
+        die();
       }
     }
   }
