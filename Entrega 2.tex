@@ -1,0 +1,100 @@
+\documentclass[12pt]{article}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{svg}
+\usepackage{listings}
+\usepackage{color}
+\title{\includegraphics[width=0.1\textwidth]{escudo.png}~ 
+\\[1cm]Entrega 2\\Tecnolog\'ias de Informaci\'on\\Prof. Ilse Guti\'errez}
+\author{Yamil Essus\\Victor Fuentes\\ Ma Beatriz Oliva\\Nicol\'as Pavez\\Diego Ramos}
+\date{3 de Mayo del 2018}
+\begin{document}
+	\pagenumbering{gobble}
+	\maketitle
+	\newpage
+	\pagenumbering{arabic}
+	\section{Introducci\'on}
+	Dada la gran cantidad de informaci\'on que existe hoy, y la importancia que esta tiene en el proceso de toma de decisiones, es necesario usar las tecnolog\'ias de informaci\'on para facilitar el control y manipulaci\'on de los datos. Muchas empresas hoy en d\'ia utilizan estas herramientas para poder desenvolverse en el mercado de forma adecuada. Es por esto, que se decidi\'o abordar la problem\'atica presente en la empresa \textit{Aramark}, en la cual existe un sistema deficiente del control del consumo alimenticio del personal de su cliente \textit{ENAP}, que se solucionar\'a utilizando los conocimientos adquiridos en el ramo, como las bases de datos. 
+	\section{Organizaci\'on Beneficiaria}
+	Aramark es una empresa que entrega servicios de alimentaci\'on y gesti\'on de instalaciones a empresas de diferentes rubros, ya sea miner\'ia, salud, educaci\'on, entre otras. 
+La organizaci\'on tiene como misi\'on y prop\'osito ser el mejor proveedor de servicios con un valor incomparable y as\'i lograr ganarse la confianza y lealtad de sus consumidores. 
+En la empresa trabajan alrededor de 270.000 empleados en 19 pa\'ises alrededor del mundo.
+Dentro de las cuatro prestaciones que se ofrecen en Aramark est\'an los servicios de cafeter\'ia, sector en la cual se focalizar\'a el desarrollo del trabajo. 
+El contacto dentro de la empresa es el Sr. Andr\'es Essus, Jefe de operaciones de la zona sur y responsable del casino que atiende la cafeter\'ia. Tel\'efono: + 56998245616, correo: essus-andres@aramark.cl
+Se debe considerar que la problem\'atica se sit\'ua en el \'area de ventas de la firma central de Restaurantes Aramark Ltda.  
+
+	\newpage
+	\section{Descripci\'on del Problema}
+	El contexto del problema es el siguiente, \textit{Aramark} presta servicios de alimentaci\'on colectiva a la empresa \textit{ENAP}, lo que conlleva comidas a diferentes horas del d\'ia prefijadas para su personal y la atenci\'on de una cafeter\'ia dentro de las instalaciones. En esta cafeter\'ia, los clientes compran \textit{a cr\'edito}, por lo que se vuelve necesario tener un registro detallado del consumo de cada cliente, los productos que compr\'o, la fecha en que los compr\'o, etc.\\
+	Actualmente, esto se realiza a mano, el cajero de la cafeter\'ia ingresa la venta en un \textit{ticket} que contiene la informaci\'on del cliente y lo que consumi\'o, para luego almacenarlo hasta que sea necesario, sin ning\'un tipo de orden espec\'ifico.\\
+	Es evidente que el sistema actual est\'a propenso a una gran cantidad de errores, los \textit{ticket} se pierden, hay que contar a mano los que son de un mismo trabajador, y en el momento en que se quieren pasar a una planilla Excel, abundan los errores de \textit{tipeo}, faltas de ortograf\'ia o simplemente distintas personas escriben el nombre de manera diferente (Con o sin may\'usculas, por ejemplo), adem\'as del evidente costo en tiempo que todo esto conlleva. Se nos mencion\'o tambi\'en que no eran raras las quejas de los clientes, ya que ni siquiera ellos ten\'ian realmente claro cuanto hab\'ian consumido.\\
+	Por otra parte, existe muy poco control de la recepci\'on de los productos, cuando son comprados a los proveedores. Se lleva un sistema similar pero en vez de \textit{tickets} se anota la informaci\'on de la recepci\'on del pedido en un cuaderno, cosa que adem\'as de exigir una cantidad considerable de tiempo cuando se realizan actividades administrativas como la contabilidad o la planificai\'on, esta muy propenso a p\'erdidas de informaci\'on.\\
+	Ante tal panorama, proponemos un sistema de base de datos que contenga de manera paralela la informaci\'on de los clientes, de los productos y proveedores, y que luego registre toda la informaci\'on asociada a las ventas y compras de productos. Junto a esta base de datos, incorporar\'iamos una plataforma que permita a la administraci\'on obtener la informaci\'on de cada cliente, as\'i como variables que podr\'ian ser significativas en el proceso de planificaci\'on estrat\'egica, como la demanda mensual de cada producto.
+	\newpage
+	\section{Requisitos del manejo de Informaci\'on}
+	De forma general se sistematizar\'a todas las entidades involucradas en una venta en las cafeter\'ias de Aramark, permitiendo as\'i, la claridad de informaci\'on desde el proveedor hasta el registro de la venta.\\
+	La informaci\'on espec\'ifica se desarrolla a continuaci\'on :
+	\begin{itemize}
+	\item 
+	Se va a registrar una \textbf{Venta} en la base de datos a manos de un \textbf{Trabajador}, el cual presenta un nombre y un \underline{RUT}. Esta venta se caracteriza por tener un \underline{ID\_venta} y una fecha, adem\'as, participa un \textbf{Cliente} de la empresa a la cual \textit{Aramark} presta servicio, que cuenta con \underline{ID\_cliente}, RUT y nombre.
+	\item Cada venta contiene al menos un tipo de \textbf{Producto}, pudi\'endose comprar m\'as de un producto del mismo tipo en cada venta, donde cada uno cuenta con un \underline{ID\_producto}, nombre y precio. 
+	\item Cada venta contiene al menos un tipo de Producto, pudi\'endose comprar m\'as de un producto del mismo tipo en cada venta, donde cada uno cuenta con un ID\_producto, nombre y precio.
+	\item Cada producto pertenece a un \textbf{Lote}, los cuales provienen  de una \textbf{Compra} realizada a un  \textbf{Proveedor}, quien tiene un \underline{ID\_proveedor}, nombre, correo, fono, direcci\'on.
+	\item El lote cuenta con un \underline{ID\_lote}, fecha\_elab, fecha\_venci.
+	\item Cada Compra viene de un Proveedor y cada Proveedor realiza tantas distribuciones como compras se le pidan. Una Compra est\'a compuesta por un \underline{ID\_compra}, fecha y cantidad, adem\'as, cabe mencionar que involucra variedades de Productos y Lotes.
+	\item Cada Producto y Lote est\'an asociados a una sola Compra.
+\end{itemize}
+	\newpage
+	\section{Funcionalidades}
+Todas estas entidades y relaciones son las que participan en la situaci\'on que aqueja a la empresa \textit{Aramark}, qui\'enes han tenido constantes problemas para acceder r\'apidamente a esta informaci\'on.\\
+Con el sistema que emplearemos esta problem\'atica disminuir\'a en gran porcentaje, \textit{Aramark} podr\'a tener un permanente registro de qu\'e cliente ha comprado qu\'e producto en la cafeter\'ia y con ello tener la suma parcial de lo que deber\'a pagar cada cliente cuando finalice el cr\'edito.\\
+Adem\'as, se tendr\'a la informaci\'on de cu\'ales son los productos m\'as comprados. Esta informaci\'on permitir\'a a \textit{Aramark} realizar estudios de mercado, para manejar mejor qu\'e y cu\'antos productos ordenar a los distribuidores.\\
+El sistema tambi\'en facilita el control del inventario, donde se podr\'a revisar con exactitud las fechas de vencimiento de los productos que se tienen. Esto puede ayudar a prevenir el exceso de productos caducados en el stock. \\
+Por \'ultimo, y si la empresa lo quiere, este sistema le da la posibilidad a \textit{Aramark} de facilitar esta informaci\'on a sus clientes para que revisen el estado de su cuenta.\\
+Sabemos que el error humano es una variable existente y que por ello no podemos asegurar que el sistema solucionar\'a esta problem\'atica por completo, pero creemos que s\'i es una gran ayuda, pues este sistema da espacio a un mayor control de las ventas y del inventario de la cafeter\'ia. \\
+Adem\'as, al trabajar con n\'umeros (ID) y no con nombres se minimizan los errores de tipeo.
+	\newpage
+	\section{Modelo Entidad - Relac\'ion}
+	\begin{figure}[h!]
+  	\includegraphics[width=\linewidth]{Mer.png}
+  	\caption{Modelo entidad relaci\'on}
+  	\label{fig:Mer}
+	\end{figure}
+Para el modelo se deben considerar las siguientes restricciones no modeladas y supuestos:
+	\begin{enumerate}
+\item No se puede vender productos que est\'en vencidos, es decir,  la fecha de vencimiento debe ser mayor a la fecha actual.   
+\item La fecha registrada de compra y venta no puede ser mayor a la fecha actual. 
+\item Una boleta se asocia s\'olo a un cliente y a un trabajador. 	
+	\end{enumerate} 
+	
+Supuesto: Los productos pueden ser distribuidos por m\'as de un proveedor.
+
+	\newpage
+	\section{Esquema relacional}
+	Cliente (\underline{Id\_cliente}, nombre, Rut)\\\\
+Trabajador (\underline{Rut}, nombre)\\\\
+Producto (\underline{Id\_producto}, nombre, precio)\\\\
+Lote (\underline{Id\_lote}, fecha\_vencimiento, fecha\_elaboracion)\\\\
+Proveedor (\underline{Id\_proveedor}, nombre, correo, telefono, direcci\'on) \\\\
+Venta (\underline{Id\_venta}, fecha, Id\_cliente, rut)\\
+FOREIGN KEY (Id\_cliente) REFERENCES (Cliente)\\
+FOREIGN KEY (Rut) REFERENCES (Trabajador)\\\\
+Venta\_Producto (\underline{Id\_producto}, \underline{Id\_venta}, cantidad)\\
+FOREIGN KEY (Id\_producto) REFERENCES (Producto)\\
+FOREIGN KEY (Id\_venta) REFERENCES (Venta)\\\\
+Compra (\underline{Id\_compra}, \underline{Id\_proveedor},  fecha, cantidad, Id\_producto, Id\_lote,)\\
+FOREIGN KEY (Id\_proveedor) REFERENCES (Proveedor)\\
+FOREIGN KEY (Id\_producto) REFERENCES (Producto)\\
+FOREIGN KEY (Id\_lote) REFERENCES (Lote)\\
+
+	\newpage
+	\section{Conclusi\'on}
+	El equipo n\'umero cuatro concluye que la "entrega 2" ha sido fruct\'ifera para el desarrollo del proyecto y para el aprendizaje de los contenidos del curso.
+	 En un principio, exist\'ian bastantes ambig\"uedades con relaci\'on a la entidad beneficiaria y a la identificaci\'on del real problema que exist\'ia, sin embargo, a ra\'iz de la retroalimentaci\'on realizada por la profesora se ha logrado identificar correctamente a la entidad beneficiaria, Aramark, y de mejor manera se logr\'o identificar el problema, que, en simples palabras, radica en el registro de las ventas realizadas en una cafeter\'ia en particular.
+	 Con respecto al desarrollo y entendimiento del problema, el dise\~{n}o del esquema MER ha podido clarificar las partes involucradas a la hora de avanzar con el sistema, pues dicho esquema ha evidenciado en forma espec\'ifica los datos que se deben sistematizar en el futuro, como la informaci\'on de cada cliente que adquiere un producto o la fecha de una venta. Adem\'as, al haber construido el esquema relacional, existe una mejor proyecci\'on en cuanto al pr\'oximo paso del proyecto, pues se evidencian las ventajas que posee, como lo son evitar la duplicidad de datos, favorecer la normalizaci\'on por ser m\'as comprensible y aplicable, e imaginar de manera sencilla el funcionamiento y entendimiento del sistema que se busca llevar a cabo. Finalmente, con respecto al aprendizaje personal de los integrantes del equipo cuatro, se congenia en un avance progresivo en los conocimientos de las herramientas que proporciona el curso, puesto que los esquemas MER y relacional fueron hechos por los 5 representantes de manera conjunta, en donde se discutieron los puntos en los cuales no exist\'ia consenso, y as\'i, en forma colectiva, poder llegar a la conclusi\'on correcta. Es importante mencionar que si bien, se entiende que en el mundo laboral donde el grupo se desempe\~{n}ar\'a en el futuro no se tendr\'a que construir los esquemas y sistemas del presente trabajo, s\'i es pertinente conocer las herramientas que faciliten la entrega de informaci\'on, pues qui\'en sabe d\'onde y cu\'ando pueda llegar el momento en donde el acceso sencillo a la informaci\'on pueda ahorrar tiempo y costos, y, en consecuencia, agregar valor al trabajo que corresponda.
+	\newpage
+	\section{Otros avances y trabajo pendiente}
+	Paralelamente se ha estado trabajando en el c\'odigo SQL para implementar nuestra base de datos, y en una plataforma programada en Java que cumpla las funciones de interfaz con el usuario, realizando las consultas necesarias y obteniendo las sumas y promedios que el usuario requiera, lo m\'as agradable a la vista posible. Se han tomado los primeros pasos en el dise\~{n}o de una interfaz web con las mismas funcionalidades.
+	\section{Bibliograf\'ia}
+	Para este trabajo utilizamos las diapostivas del curso, y la informaci\'on disponible en la p\'agina Web de Aramark.
+\end{document}
